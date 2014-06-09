@@ -15,12 +15,12 @@ var data = {};
 data.user = '100003188026759';
 data.world_id = '100003188026759';
 data.userguid = '142'
-data.batch_number = 7;
-data.batch_token = '4ec9129eef79a5975b52a6c2603a9e4b';
-data.IQ = '25970157386';
-data.secret = 'c13a92260ba53f23f0825960ea41fe1e';
+data.batch_number = 1;
+data.batch_token = '50f40731963382b3051983772a55cd98';
+data.IQ = '7229015999';
+data.secret = 'ea533845c7817298c6f5f42367f4cf91';
 data.flashVersion = '14568.22';
-data.session_key = '4000032520';
+data.session_key = '400017935D';
 data.hashed_id = '';
 
 var options = {};
@@ -35,24 +35,25 @@ headers['Referer'] = 'https://d297281mgrzzms.cloudfront.net/v2/versions/14377/ma
 headers['Accept-Language'] = 'zh-CN,zh;q=0.8';
 headers['Origin'] = 'https://d297281mgrzzms.cloudfront.net';
 options.headers = headers;
+run();
+function run(){
+    var addtime = getAddTime();
+    var command = '[';
+    command += '{"opTime":' + (addtime - 6) + ',"params":{"ident":"First0_4_1"},"action":"start_quest"},';
+    command += '{"opTime":' + (addtime - 5) + ',"params":{"value":1,"ident":"zoom"},"action":"toggle_setting"},';
+    command += '{"opTime":' + (addtime - 4) + ',"params":{"objectiveIndex":1,"objectiveState":{"usecash":false,"count":0,"isComplete":true,"ident":"First0_4_1_1"},"ident":"First0_4_1"},"action":"save_quest_objective"},';
+    command += '{"opTime":' + (addtime - 3) + ',"params":{"value":0.7,"ident":"zoom"},"action":"toggle_setting"},';
+    command += '{"opTime":' + (addtime - 2) + ',"params":{"objectiveIndex":0,"objectiveState":{"usecash":false,"count":0,"isComplete":true,"ident":"First0_4_1_0"},"ident":"First0_4_1"},"action":"save_quest_objective"},';
+    command += '{"opTime":' + (addtime - 1) + ',"params":{"ident":"First0_4_1"},"action":"complete_quest"}';
+    command += ']';
 
+    call_batch(addtime, command, function (err, chunks) {
+        console.log(err);
+        console.log(chunks)
+        run();
+    });
+}
 
-var addtime = getAddTime();
-//var command='[{"opTime":'+getAddTime()+',"action":"move","params":{"newX":63,"maskKey":null,"guid":"11","newZ":0,"newY":5,"className":"Animal_Cow"}},{"opTime":1402060717,"action":"move","params":{"newX":59,"maskKey":null,"guid":"50002","newZ":0,"newY":14,"className":"Animal_Chicken"}},{"opTime":'+getAddTime()+',"action":"move","params":{"newX":56,"maskKey":null,"guid":"50023","newZ":0,"newY":21,"className":"Animal_Cow"}}]';
-//var command = '[{"action":"toggle_setting","params":{"ident":"music","value":1},"opTime":' + addtime + '}]';
-var command = '[';
-command += '{"opTime":'+(addtime-6)+',"params":{"ident":"First0_4_1"},"action":"start_quest"},';
-command += '{"opTime":'+(addtime-5)+',"params":{"value":1,"ident":"zoom"},"action":"toggle_setting"},';
-command += '{"opTime":'+(addtime-4)+',"params":{"objectiveIndex":1,"objectiveState":{"usecash":false,"count":0,"isComplete":true,"ident":"First0_4_1_1"},"ident":"First0_4_1"},"action":"save_quest_objective"},';
-command += '{"opTime":'+(addtime-3)+',"params":{"value":0.7,"ident":"zoom"},"action":"toggle_setting"},';
-command += '{"opTime":'+(addtime-2)+',"params":{"objectiveIndex":0,"objectiveState":{"usecash":false,"count":0,"isComplete":true,"ident":"First0_4_1_0"},"ident":"First0_4_1"},"action":"save_quest_objective"},';
-command += '{"opTime":'+(addtime-1)+',"params":{"ident":"First0_4_1"},"action":"complete_quest"}';
-command += ']';
-
-call_batch(addtime, command, function (err, chunks) {
-    console.log(err);
-    console.log(chunks)
-});
 
 function call_batch(addtime, commands, cb) {
     options.path = path + '?key=' + getKeyTime() + '75';
