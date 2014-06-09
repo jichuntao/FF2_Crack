@@ -8,9 +8,9 @@
 var nsutil = require('./nsutil');
 var querystring = require('querystring');
 var serverUrl = 'ff2-us.socialgamenet.com';
-//var path = '/time.php';//batch load_user_data
+var path = '/persist/batch/';
 
-var path = '/persist/batch/';//batch load_user_data
+//下面的token 自己抓包
 var data = {};
 data.user = '100003188026759';
 data.world_id = '100003188026759';
@@ -35,8 +35,11 @@ headers['Referer'] = 'https://d297281mgrzzms.cloudfront.net/v2/versions/14377/ma
 headers['Accept-Language'] = 'zh-CN,zh;q=0.8';
 headers['Origin'] = 'https://d297281mgrzzms.cloudfront.net';
 options.headers = headers;
+
+
 run();
-function run(){
+
+function run() {
     var addtime = getAddTime();
     var command = '[';
     command += '{"opTime":' + (addtime - 6) + ',"params":{"ident":"First0_4_1"},"action":"start_quest"},';
