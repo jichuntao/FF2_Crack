@@ -65,7 +65,7 @@ function call_batch(addtime, commands, cb) {
     data.sendVersion = secretTime(data.addTime);
     data.batch_number++;
     data.commands = commands;
-    console.log(querystring.stringify(data));
+    console.log('batch_number:'+batch_number);
 
     nsutil.PostData(options, querystring.stringify(data), function (err, chunks, pcookies) {
         cb(err, chunks);
