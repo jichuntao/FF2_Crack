@@ -16,11 +16,11 @@ data.user = '100003188026759';
 data.world_id = '100003188026759';
 data.userguid = '142'
 data.batch_number = 1;
-data.batch_token = '50f40731963382b3051983772a55cd98';
-data.IQ = '7229015999';
-data.secret = 'ea533845c7817298c6f5f42367f4cf91';
+data.batch_token = '8d8680e13cc3d4a613101e2c6e7df5bd';
+data.IQ = '20159850227';
+data.secret = '4d88cfc770a12e89a031ff6735483aeb';
 data.flashVersion = '14568.22';
-data.session_key = '400017935D';
+data.session_key = '400017729D';
 data.hashed_id = '';
 
 var options = {};
@@ -65,7 +65,7 @@ function call_batch(addtime, commands, cb) {
     data.sendVersion = secretTime(data.addTime);
     data.batch_number++;
     data.commands = commands;
-    console.log('batch_number:'+batch_number);
+    console.log('batch_number:'+data.batch_number);
 
     nsutil.PostData(options, querystring.stringify(data), function (err, chunks, pcookies) {
         cb(err, chunks);
